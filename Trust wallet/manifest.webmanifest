@@ -1,0 +1,78 @@
+{
+  "name": "Trust Wallet — Nova Wallet",
+  "short_name": "Trust Wallet",
+  "description": "The most trusted & secure crypto wallet. Buy, store, swap and earn crypto.",
+  "start_url": "./index.html?utm_source=pwa",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui", "browser"],
+  "background_color": "#0B1020",
+  "theme_color": "#0B1020",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "id": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["finance", "utilities", "productivity"],
+  "prefer_related_applications": false,
+  "launch_handler": { "client_mode": "navigate-existing" },
+  "handle_links": "preferred",
+  "edge_side_panel": { "preferred_width": 420 },
+  "icons": [
+    { "src": "assets/icons/icon16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "assets/icons/icon32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "assets/icons/icon48.png", "sizes": "48x48", "type": "image/png" },
+    { "src": "assets/icons/icon128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "assets/icons/icon180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon1024.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" },
+    { "src": "assets/trust-wallet.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/splash-1290x2796.png",
+      "sizes": "1290x2796",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trust Wallet Home — Total Balance & Assets"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Send",
+      "short_name": "Send",
+      "description": "Send crypto to any address",
+      "url": "./index.html?action=send&utm_source=pwa-shortcut",
+      "icons": [{ "src": "assets/icons/icon192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Receive",
+      "short_name": "Receive",
+      "description": "Receive crypto",
+      "url": "./index.html?action=receive&utm_source=pwa-shortcut",
+      "icons": [{ "src": "assets/icons/icon192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Swap",
+      "short_name": "Swap",
+      "description": "Swap tokens instantly",
+      "url": "./index.html?action=swap&utm_source=pwa-shortcut",
+      "icons": [{ "src": "assets/icons/icon192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Buy",
+      "short_name": "Buy",
+      "description": "Buy crypto with card",
+      "url": "./index.html?action=buy&utm_source=pwa-shortcut",
+      "icons": [{ "src": "assets/icons/icon192.png", "sizes": "192x192" }]
+    }
+  ],
+  "protocol_handlers": [{ "protocol": "ethereum", "url": "./index.html?uri=%s" }],
+  "share_target": {
+    "action": "./index.html?share=1",
+    "method": "GET",
+    "params": { "title": "title", "text": "text", "url": "url" }
+  }
+}

@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="theme-color" content="#0B1020" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#0B1020" media="(prefers-color-scheme: light)" />
+  <meta name="msapplication-TileColor" content="#0B1020" />
+  <meta name="msapplication-navbutton-color" content="#0B1020" />
+  <meta name="description" content="Trust Wallet — The most trusted & secure crypto wallet. Buy, store, swap and earn crypto." />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Trust Wallet" />
+  <meta name="application-name" content="Trust Wallet" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Trust Wallet — Crypto Wallet</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/trust-wallet.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon180.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="assets/icons/icon192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="assets/icons/icon512.png" />
+  <link rel="apple-touch-startup-image" href="assets/splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Native splash — يظهر كتطبيق رسمي حتى يجهز -->
+  <div id="nativeSplash" aria-hidden="true">
+    <div class="splash-logo">
+      <svg viewBox="0 0 444 501" width="84" height="94" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.71 72.41L222.16 0.11V500.63C63.98 433.89 0.71 305.98 0.71 233.69V72.41Z" fill="#0500FF"/>
+        <path d="M443.62 72.41L222.17 0.11V500.63C380.35 433.89 443.62 305.98 443.62 233.69V72.41Z" fill="url(#splashGrad)"/>
+        <defs><linearGradient id="splashGrad" x1="385.26" y1="-34.78" x2="216.61" y2="493.5" gradientUnits="userSpaceOnUse"><stop offset="0.02" stop-color="#0000FF"/><stop offset="0.08" stop-color="#0094FF"/><stop offset="0.16" stop-color="#48FF91"/><stop offset="0.42" stop-color="#0094FF"/><stop offset="0.68" stop-color="#0038FF"/><stop offset="0.9" stop-color="#0500FF"/></linearGradient></defs>
+      </svg>
+      <span class="splash-title">Trust Wallet</span>
+      <span class="splash-sub">The most trusted crypto wallet</span>
+    </div>
+    <div class="splash-loader" aria-hidden="true"><span></span></div>
+  </div>
+
+  <!-- Install banner — يظهر فقط على الهاتف إذا لم يُثبّت -->
+  <div id="installBanner" hidden>
+    <img src="assets/icons/icon192.png" alt="" width="40" height="40" />
+    <div class="install-text"><b>Trust Wallet</b><span>Add to Home Screen for full app experience</span></div>
+    <button id="installBtn" type="button">Install</button>
+    <button id="installDismiss" type="button" aria-label="Close">×</button>
+  </div>
+
+  <!-- Web header - visible only on desktop web (hidden on mobile/extension) -->
+  <header class="web-header" aria-label="Web navigation">
+    <div class="web-header-brand">
+      <svg viewBox="0 0 444 501" width="22" height="25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0.71 72.41L222.16 0.11V500.63C63.98 433.89 0.71 305.98 0.71 233.69V72.41Z" fill="#0500FF"/>
+        <path d="M443.62 72.41L222.17 0.11V500.63C380.35 433.89 443.62 305.98 443.62 233.69V72.41Z" fill="#0094FF"/>
+      </svg>
+      <span>Nova Wallet</span>
+      <span style="font-weight:400;color:var(--text-secondary);font-size:12px;margin-left:4px">Web</span>
+    </div>
+    <nav class="web-header-nav">
+      <a class="web-header-link is-active" href="./index.html">Wallet</a>
+      <a class="web-header-link" href="./Bb/Dashboard%20-%20Binance.html">Binance</a>
+      <a class="web-header-link" href="https://github.com" target="_blank" rel="noopener">Docs</a>
+    </nav>
+  </header>
+  <div class="stage" id="stage">
+
+    <main class="phone" aria-label="Trust Wallet dashboard">
+
+      <div class="app" id="app">
+
+        <div class="view view--active" id="homeView">
+
+        <!-- ===================== Top bar ===================== -->
+        <header class="topbar">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 444 501" width="26" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.710022 72.41L222.16 0.109985V500.63C63.98 433.89 0.710022 305.98 0.710022 233.69V72.41Z" fill="#0500FF"/>
+                <path d="M443.62 72.41L222.17 0.109985V500.63C380.35 433.89 443.62 305.98 443.62 233.69V72.41Z" fill="url(#twGrad)"/>
+                <defs>
+                  <linearGradient id="twGrad" x1="385.26" y1="-34.78" x2="216.61" y2="493.5" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.02" stop-color="#0000FF"/>
+                    <stop offset="0.08" stop-color="#0094FF"/>
+                    <stop offset="0.16" stop-color="#48FF91"/>
+                    <stop offset="0.42" stop-color="#0094FF"/>
+                    <stop offset="0.68" stop-color="#0038FF"/>
+                    <stop offset="0.9" stop-color="#0500FF"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <button class="brand-name" id="walletSwitcher" type="button" aria-label="Switch wallet">
+              <span id="brandName">Trust Wallet</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="icon-btn" type="button" id="addWalletBtn" aria-label="Add wallet">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14"/><path d="M5 12h14"/>
+              </svg>
+            </button>
+            <button class="icon-btn" type="button" data-toast="Scan QR code" aria-label="Scan QR code">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+                <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+                <path d="M7 12h10"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- ===================== Balance card ===================== -->
+        <section class="balance" aria-label="Total balance">
+          <div class="balance-head">
+            <p class="balance-label">Total Balance</p>
+            <button class="icon-btn icon-btn--sm" type="button" data-toast="Balance visible" aria-label="Hide balance">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+
+          <h1 class="balance-amount">
+            <span class="balance-currency">$</span>
+            <span id="balanceValue">3,563.34</span>
+          </h1>
+
+          <div class="balance-meta">
+            <span class="change-chip" id="changeChip">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 19V5"/>
+                <path d="m5 12 7-7 7 7"/>
+              </svg>
+              <span id="changePct">2.34%</span>
+            </span>
+            <span class="change-note" id="changeNote">+$94.02 · today</span>
+          </div>
+
+          <!-- Price chart -->
+          <div class="chart-wrap">
+            <svg class="chart" viewBox="0 0 340 110" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="110" gradientUnits="userSpaceOnUse">
+                  <stop id="chartFillStop" offset="0" stop-color="#16C784" stop-opacity="0.35"/>
+                  <stop id="chartFillStopEnd" offset="1" stop-color="#16C784" stop-opacity="0"/>
+                </linearGradient>
+                <filter id="dotGlow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="3.4" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <path class="chart-area" d="M0 92 C 22 88, 38 72, 56 76 S 92 62, 112 64 150 44, 170 48 206 28, 228 32 268 18, 292 20 340 10 L 340 110 L 0 110 Z" fill="url(#chartFill)"/>
+              <path class="chart-line" d="M0 92 C 22 88, 38 72, 56 76 S 92 62, 112 64 150 44, 170 48 206 28, 228 32 268 18, 292 20 340 10" stroke="#16C784" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="chart-dot-glow" id="chartDotGlow" cx="340" cy="10" r="5.5" fill="#16C784" opacity="0.55" filter="url(#dotGlow)"/>
+              <circle class="chart-dot" id="chartDot" cx="340" cy="10" r="3" fill="#0A0E14" stroke="#16C784" stroke-width="2.5"/>
+            </svg>
+            <div class="chart-tabs" role="tablist" aria-label="Chart period">
+              <button class="chart-tab is-active" type="button">1H</button>
+              <button class="chart-tab" type="button">1D</button>
+              <button class="chart-tab" type="button">1W</button>
+              <button class="chart-tab" type="button">1M</button>
+              <button class="chart-tab" type="button">1Y</button>
+              <button class="chart-tab" type="button">ALL</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== Quick actions ===================== -->
+        <section class="actions" aria-label="Quick actions">
+          <button class="action action--buy" type="button" id="buyAction">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+            </span>
+            <span class="action-label">Buy</span>
+          </button>
+
+          <button class="action" type="button" id="sendAction">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 19V5"/>
+                <path d="m5 12 7-7 7 7"/>
+              </svg>
+            </span>
+            <span class="action-label">Send</span>
+          </button>
+
+          <button class="action" type="button" data-toast="Receive wallet address">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12"/>
+                <path d="m8 11 4 4 4-4"/>
+                <path d="M4 21h16"/>
+              </svg>
+            </span>
+            <span class="action-label">Receive</span>
+          </button>
+
+          <button class="action" type="button" id="swapAction">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m8 3-4 4 4 4"/>
+                <path d="M4 7h16"/>
+                <path d="m16 21 4-4-4-4"/>
+                <path d="M20 17H4"/>
+              </svg>
+            </span>
+            <span class="action-label">Swap</span>
+          </button>
+        </section>
+
+        <!-- ===================== Assets ===================== -->
+        <section class="tokens" aria-label="Token portfolio">
+          <div class="section-head">
+            <h2 class="section-title">Your assets</h2>
+            <button class="add-btn" type="button" data-toast="Manage tokens" aria-label="Add token">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14"/>
+                <path d="M5 12h14"/>
+              </svg>
+            </button>
+          </div>
+
+          <ul class="token-list">
+            <li class="token" data-id="bitcoin" data-amount="0" data-symbol="BTC" data-network="Bitcoin" data-toast="Bitcoin · BTC" tabindex="0">
+              <img class="token-logo" src="assets/icons/bitcoin.png" alt="Bitcoin logo" width="44" height="44" />
+              <div class="token-info">
+                <span class="token-name">Bitcoin</span>
+                <span class="token-sub">0 BTC</span>
+              </div>
+              <div class="token-value">
+                <span class="token-amount">$0.00</span>
+                <span class="token-change is-flat">0.00%</span>
+              </div>
+            </li>
+
+            <li class="token" data-id="ethereum" data-amount="0" data-symbol="ETH" data-network="Ethereum" data-toast="Ethereum · ETH" tabindex="0">
+              <img class="token-logo" src="assets/icons/ethereum.png" alt="Ethereum logo" width="44" height="44" />
+              <div class="token-info">
+                <span class="token-name">Ethereum</span>
+                <span class="token-sub">0 ETH</span>
+              </div>
+              <div class="token-value">
+                <span class="token-amount">$0.00</span>
+                <span class="token-change is-flat">0.00%</span>
+              </div>
+            </li>
+
+            <li class="token" data-id="binancecoin" data-amount="0" data-symbol="BNB" data-network="BNB Smart Chain" data-toast="BNB Smart Chain · BNB" tabindex="0">
+              <img class="token-logo" src="assets/icons/binance.png" alt="BNB Smart Chain logo" width="44" height="44" />
+              <div class="token-info">
+                <span class="token-name">BNB Smart Chain</span>
+                <span class="token-sub">0 BNB</span>
+              </div>
+              <div class="token-value">
+                <span class="token-amount">$0.00</span>
+                <span class="token-change is-flat">0.00%</span>
+              </div>
+            </li>
+
+            <li class="token" data-id="tether" data-amount="3563.34" data-symbol="USDT" data-network="Tron (TRC20)" data-toast="Tether USD · USDT" tabindex="0">
+              <img class="token-logo" src="assets/icons/usdt.png" alt="Tether USD logo" width="44" height="44" />
+              <div class="token-info">
+                <span class="token-name">USDT</span>
+                <span class="token-sub">3563.34 USDT · TRC20</span>
+              </div>
+              <div class="token-value">
+                <span class="token-amount">$3,563.34</span>
+                <span class="token-change is-flat">0.00%</span>
+              </div>
+            </li>
+
+            <li class="token" data-id="solana" data-amount="0" data-symbol="SOL" data-network="Solana" data-toast="Solana · SOL" tabindex="0">
+              <img class="token-logo" src="assets/icons/solana.png" alt="Solana logo" width="44" height="44" />
+              <div class="token-info">
+                <span class="token-name">Solana</span>
+                <span class="token-sub">0 SOL</span>
+              </div>
+              <div class="token-value">
+                <span class="token-amount">$0.00</span>
+                <span class="token-change is-flat">0.00%</span>
+              </div>
+            </li>
+
+            <li class="token" data-id="monero" data-amount="0" data-symbol="XMR" data-network="Monero" data-toast="Monero · XMR" tabindex="0">
+              <img class="token-logo" src="assets/icons/monero.png" alt="Monero logo" width="44" height="44" />
+              <div class="token-info">
+                <span class="token-name">Monero</span>
+                <span class="token-sub">0 XMR</span>
+              </div>
+              <div class="token-value">
+                <span class="token-amount">$0.00</span>
+                <span class="token-change is-flat">0.00%</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <footer class="app-foot" aria-hidden="true">
+          <span>Portfolio value refreshed just now</span>
+        </footer>
+
+        <!-- ===================== ACTIVITY ===================== -->
+        <section class="activity" aria-label="Recent activity" id="activitySection" hidden>
+          <div class="section-head">
+            <h2 class="section-title">Activity</h2>
+            <button class="add-btn" type="button" data-toast="View all transactions" aria-label="View all">
+              <span style="font-size:13px;font-weight:600;letter-spacing:.2px">See all</span>
+            </button>
+          </div>
+          <ul class="activity-list" id="activityList"></ul>
+        </section>
+
+        </div>
+
+        <!-- ===================== SEND · details ===================== -->
+        <div class="view" id="sendView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="sendBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Send</h1>
+            <button class="icon-btn" type="button" id="sendScan" aria-label="Scan QR">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+                <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+              </svg>
+            </button>
+          </header>
+
+          <div class="send-body">
+            <div class="field-card">
+              <span class="field-label">To</span>
+              <div class="address-row">
+                <input class="address-input" id="recipientInput" type="text" placeholder="Recipient address" autocomplete="off" spellcheck="false" />
+                <button class="mini-btn" type="button" id="pasteBtn">Paste</button>
+                <button class="mini-icon" type="button" id="scanBtn" aria-label="Scan QR">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+                    <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                    <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+                    <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+                    <path d="M7 12h10"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <button class="pick-row" type="button" id="assetRow">
+              <span class="pick-main">
+                <img class="pick-logo" id="sendAssetLogo" src="assets/icons/bitcoin.png" alt="" width="40" height="40" />
+                <span class="pick-text">
+                  <span class="pick-title" id="sendAssetName">Bitcoin</span>
+                  <span class="pick-sub" id="sendAssetSub">Bitcoin</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <button class="pick-row" type="button" id="networkRow">
+              <span class="pick-main">
+                <span class="net-dot" id="netDot"></span>
+                <span class="pick-text">
+                  <span class="pick-title" id="sendNetworkName">Bitcoin</span>
+                  <span class="pick-sub">Network</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <div class="field-card amount-card">
+              <span class="field-label">Amount</span>
+              <div class="amount-row">
+                <input class="amount-input" id="amountInput" type="text" inputmode="decimal" placeholder="0.00" autocomplete="off" />
+                <span class="amount-symbol" id="amountSymbol">BTC</span>
+              </div>
+              <div class="amount-meta">
+                <span id="amountUsd">$0.00</span>
+                <span class="amount-avail">Available: <b id="amountAvail">0.0521 BTC</b></span>
+                <button class="max-btn" type="button" id="maxBtn">Max</button>
+              </div>
+            </div>
+
+            <button class="pick-row" type="button" id="feeRow">
+              <span class="pick-main">
+                <span class="pick-text">
+                  <span class="pick-title" id="feeName">Standard network fee</span>
+                  <span class="pick-sub" id="feeNetwork">Bitcoin network</span>
+                </span>
+              </span>
+              <span class="fee-value" id="feeValue">≈ $0.80</span>
+            </button>
+
+            <p class="field-note">The recipient will receive the amount minus the network fee.</p>
+
+            <button class="binance-withdraw-row" type="button" id="withdrawBinanceBtn">
+              <span class="pick-main">
+                <img class="pick-logo binance-logo" src="binance-icon-seeklogo.png" alt="Binance" width="40" height="40" />
+                <span class="pick-text">
+                  <span class="pick-title">Withdraw to Binance</span>
+                  <span class="pick-sub">Send funds to your Binance deposit address</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="flow-footer">
+            <button class="primary-btn" id="continueBtn" type="button" disabled>Continue</button>
+          </div>
+        </div>
+
+        <!-- ===================== WITHDRAW TO BINANCE ===================== -->
+        <div class="view" id="withdrawView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="withdrawBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Withdraw to Binance</h1>
+            <span class="flow-head-spacer"></span>
+          </header>
+
+          <div class="send-body withdraw-body">
+            <div class="bn-brand">
+              <div class="bn-brand-top">
+                <div class="bn-brand-logo">
+                  <img src="binance-icon-seeklogo.png" alt="Binance" />
+                </div>
+                <div class="bn-brand-meta">
+                  <span class="bn-brand-name">Binance</span>
+                  <span class="bn-brand-ver">Cryptocurrency Exchange</span>
+                </div>
+                <span class="bn-verified">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  Verified
+                </span>
+              </div>
+            </div>
+
+            <div class="bn-deposit">
+              <div class="bn-deposit-head">
+                <span class="bn-deposit-label">Deposit Network</span>
+                <button class="bn-network-chip" type="button" id="wdNetworkRow">
+                  <span class="bn-dot"></span>
+                  <span id="wdNetwork">Bitcoin network</span>
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+              </div>
+              <div class="bn-addr-row">
+                <span class="bn-addr" id="wdAddress">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</span>
+                <button class="bn-copy" type="button" id="wdCopyBtn" aria-label="Copy address">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                </button>
+              </div>
+              <p class="field-note">Only send this asset on the selected network. Sending other assets may result in permanent loss.</p>
+            </div>
+
+            <button class="pick-row" type="button" id="wdAssetRow">
+              <span class="pick-main">
+                <img class="pick-logo" id="wdAssetLogo" src="assets/icons/bitcoin.png" alt="" width="40" height="40" />
+                <span class="pick-text">
+                  <span class="pick-title" id="wdAssetName">Bitcoin</span>
+                  <span class="pick-sub" id="wdAssetSub">Bitcoin</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <div class="field-card amount-card">
+              <span class="field-label">Amount</span>
+              <div class="amount-row">
+                <input class="amount-input" id="wdAmountInput" type="text" inputmode="decimal" placeholder="0.00" autocomplete="off" />
+                <span class="amount-symbol" id="wdAmountSymbol">BTC</span>
+              </div>
+              <div class="amount-meta">
+                <span id="wdAmountUsd">$0.00</span>
+                <span class="amount-avail">Available: <b id="wdAvail">0.0521 BTC</b></span>
+                <button class="max-btn" type="button" id="wdMaxBtn">Max</button>
+              </div>
+            </div>
+
+            <button class="pick-row" type="button" id="wdFeeRow">
+              <span class="pick-main">
+                <span class="pick-text">
+                  <span class="pick-title" id="wdFeeName">Standard network fee</span>
+                  <span class="pick-sub" id="wdFeeNetwork">Bitcoin network</span>
+                </span>
+              </span>
+              <span class="fee-value" id="wdFeeValue">≈ $0.80</span>
+            </button>
+          </div>
+
+          <div class="flow-footer">
+            <button class="primary-btn" id="wdSendBtn" type="button" disabled>Send to Binance</button>
+          </div>
+        </div>
+
+        <!-- ===================== SEND · review ===================== -->
+        <div class="view" id="confirmView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="confirmBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Review</h1>
+            <span class="flow-head-spacer"></span>
+          </header>
+
+          <div class="confirm-wrap">
+            <div class="confirm-card">
+              <div class="confirm-main">
+                <img id="confirmLogo" src="assets/icons/bitcoin.png" alt="" width="46" height="46" />
+                <div>
+                  <span class="confirm-amount" id="confirmAmount">0.0100 BTC</span>
+                  <span class="confirm-usd" id="confirmUsd">$600.00</span>
+                </div>
+              </div>
+
+              <div class="confirm-rows">
+                <div class="c-row"><span>From</span><b id="confirmFrom">Trust Wallet</b></div>
+                <div class="c-row"><span>To</span><b class="c-addr" id="confirmTo">—</b></div>
+                <div class="c-row"><span>Network</span><b id="confirmNetwork">Bitcoin</b></div>
+                <div class="c-row"><span>Network fee</span><b id="confirmFee">≈ $0.80</b></div>
+                <div class="c-row c-row--total"><span>Total</span><b id="confirmTotal">$600.80</b></div>
+              </div>
+            </div>
+
+            <p class="confirm-note" id="confirmNote">You're sending on the Bitcoin network. Double-check the address before confirming.</p>
+          </div>
+
+          <div class="flow-footer">
+            <button class="primary-btn" id="confirmBtn" type="button">Confirm &amp; Send</button>
+          </div>
+        </div>
+
+        <!-- ===================== SEND · success ===================== -->
+        <div class="view success-view" id="successView">
+          <div class="success-inner">
+            <div class="success-icon-wrap">
+              <div class="success-icon" id="successIcon">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+              </div>
+              <svg class="success-ring" viewBox="0 0 60 60" aria-hidden="true">
+                <circle cx="30" cy="30" r="28" fill="none" stroke-width="2" stroke="#16C784" stroke-linecap="round" stroke-dasharray="176" stroke-dashoffset="176"/>
+              </svg>
+            </div>
+            <h2 class="success-title">Transaction sent!</h2>
+            <p class="success-sub" id="successSub">0.0100 BTC sent to the recipient</p>
+            <div class="tx-hash" id="txHash">0x9f2a…c4e1</div>
+            <button class="primary-btn inline" id="explorerBtn" type="button">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 17 17 7"/>
+                <path d="M7 7h10v10"/>
+              </svg>
+              View on explorer
+            </button>
+          </div>
+          <div class="flow-footer">
+            <button class="primary-btn" id="doneBtn" type="button">Done</button>
+          </div>
+        </div>
+
+        <!-- ===================== TX DETAIL ===================== -->
+        <div class="view" id="txDetailView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="txDetailBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Transaction</h1>
+            <button class="icon-btn" type="button" id="txDetailShare" aria-label="Share">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8"/>
+                <path d="M16 6l-4-4-4 4"/>
+                <path d="M12 2v13"/>
+              </svg>
+            </button>
+          </header>
+
+          <div class="tx-wrap">
+            <div class="tx-hero">
+              <div class="tx-hero-icon" id="txDetailIcon"></div>
+              <span class="tx-hero-status" id="txDetailStatus">Confirmed</span>
+              <span class="tx-hero-amt" id="txDetailAmount">−0.1000 ETH</span>
+              <span class="tx-hero-usd" id="txDetailUsd">$184.94</span>
+            </div>
+
+            <div class="tx-card">
+              <div class="tx-row">
+                <span class="tx-row-label">Status</span>
+                <span class="tx-row-value"><span class="tx-status-badge" id="txDetailStatusBadge">Confirmed</span></span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">Type</span>
+                <span class="tx-row-value" id="txDetailType">Swap</span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">Amount</span>
+                <span class="tx-row-value" id="txDetailFromAmt">0.1000 ETH</span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">Received / To</span>
+                <span class="tx-row-value" id="txDetailToAmt">184.9400 USDT</span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">Network</span>
+                <span class="tx-row-value" id="txDetailNetwork">Trust Wallet DEX</span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">Transaction hash</span>
+                <span class="tx-row-value tx-hash-cell" id="txDetailHash">0x9f2a…c4e1</span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">Time</span>
+                <span class="tx-row-value" id="txDetailTime">Just now</span>
+              </div>
+              <div class="tx-row">
+                <span class="tx-row-label">From</span>
+                <span class="tx-row-value" id="txDetailFrom">0xf4a2…88b1</span>
+              </div>
+            </div>
+
+            <button class="ghost-btn wide" id="txDetailExplorer" type="button">View on block explorer</button>
+          </div>
+        </div>
+
+        <!-- ===================== BUY · manage assets ===================== -->
+        <div class="view" id="buyView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="buyBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Buy &amp; Manage</h1>
+            <button class="icon-btn" type="button" id="buyScan" aria-label="Add asset">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14"/><path d="M5 12h14"/>
+              </svg>
+            </button>
+          </header>
+
+          <div class="buy-wrap">
+            <div class="buy-summary">
+              <span class="buy-summary-label">Total portfolio</span>
+              <span class="buy-summary-value" id="buyTotal">$0.00</span>
+              <span class="buy-summary-change" id="buyChange">0.00% today</span>
+            </div>
+
+            <p class="buy-hint">Tap + or − to increase or decrease any asset. Adjustments apply instantly.</p>
+
+            <ul class="buy-list" id="buyList"></ul>
+          </div>
+
+          <div class="flow-footer">
+            <button class="primary-btn" id="buyDone" type="button">Done</button>
+          </div>
+        </div>
+
+        <!-- ===================== SWAP ===================== -->
+        <div class="view" id="swapView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="swapBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Swap</h1>
+            <button class="icon-btn" type="button" id="swapSettings" aria-label="Swap settings">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </button>
+          </header>
+
+          <div class="send-body swap-body">
+            <div class="swap-card">
+              <div class="swap-card-head">
+                <button class="swap-token" type="button" id="swapFromRow">
+                  <img class="swap-token-logo" id="swapFromLogo" src="assets/icons/bitcoin.png" alt="" width="40" height="40" />
+                  <span class="pick-text">
+                    <span class="swap-token-name" id="swapFromName">Bitcoin</span>
+                    <span class="pick-sub" id="swapFromBal">Balance: 0.0521 BTC</span>
+                  </span>
+                </button>
+              </div>
+              <div class="swap-amount-row">
+                <input class="swap-amount" id="swapFromInput" type="text" inputmode="decimal" placeholder="0.00" autocomplete="off" />
+                <div class="swap-amount-side">
+                  <span class="swap-symbol" id="swapFromSymbol">BTC</span>
+                  <span class="swap-usd" id="swapFromUsd">$0.00</span>
+                  <button class="max-btn" type="button" id="swapMaxBtn">Max</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="swap-switch-wrap">
+              <button class="swap-switch" type="button" id="swapSwitchBtn" aria-label="Switch tokens">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m7 4-4 4 4 4"/>
+                  <path d="M3 8h13"/>
+                  <path d="m17 20 4-4-4-4"/>
+                  <path d="M21 16H8"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="swap-card swap-card--to">
+              <div class="swap-card-head">
+                <button class="swap-token" type="button" id="swapToRow">
+                  <img class="swap-token-logo" id="swapToLogo" src="assets/icons/ethereum.png" alt="" width="40" height="40" />
+                  <span class="pick-text">
+                    <span class="swap-token-name" id="swapToName">Ethereum</span>
+                    <span class="pick-sub" id="swapToBal">Balance: 0.2532 ETH</span>
+                  </span>
+                </button>
+              </div>
+              <div class="swap-amount-row">
+                <input class="swap-amount" id="swapToInput" type="text" inputmode="decimal" placeholder="0.00" readonly tabindex="-1" />
+                <div class="swap-amount-side">
+                  <span class="swap-symbol" id="swapToSymbol">ETH</span>
+                  <span class="swap-usd" id="swapToUsd">$0.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swap-rate" id="swapRate">1 BTC ≈ 1 ETH</div>
+
+            <button class="pick-row" type="button" id="swapProviderRow">
+              <span class="pick-main">
+                <span class="pick-text">
+                  <span class="pick-title">DEX Provider</span>
+                  <span class="pick-sub">Trust Wallet · Best available rate</span>
+                </span>
+              </span>
+              <span class="fee-value" id="swapProviderFee">≈ $0.35</span>
+            </button>
+          </div>
+
+          <div class="flow-footer">
+            <button class="primary-btn" id="swapBtn" type="button" disabled>Swap</button>
+          </div>
+        </div>
+
+        <!-- ===================== IMPORT · recovery phrase ===================== -->
+        <div class="view" id="importView">
+          <header class="flow-head">
+            <button class="icon-btn" type="button" id="importBack" aria-label="Back">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 class="flow-title">Import wallet</h1>
+            <span class="flow-head-spacer"></span>
+          </header>
+
+          <div class="import-wrap">
+            <div class="field-card">
+              <span class="field-label">Wallet name</span>
+              <div class="address-row">
+                <input class="address-input" id="walletNameInput" type="text" placeholder="My new wallet" autocomplete="off" spellcheck="false" />
+              </div>
+            </div>
+
+            <div class="field-card">
+              <div class="seed-head">
+                <span class="field-label">Recovery phrase</span>
+                <span class="seed-count" id="seedCount">0 words</span>
+              </div>
+              <textarea class="seed-input" id="seedInput" rows="4" placeholder="Enter 12 or 24 words separated by spaces" spellcheck="false" autocomplete="off"></textarea>
+              <div class="seed-actions">
+                <button class="mini-btn" type="button" id="seedPaste">Paste</button>
+                <button class="mini-btn mini-btn--ghost" type="button" id="seedClear">Clear</button>
+              </div>
+            </div>
+
+            <p class="seed-warn" id="seedWarn">Enter your recovery phrase to restore the wallet. Never share it with anyone.</p>
+          </div>
+
+          <div class="flow-footer">
+            <button class="primary-btn" id="importBtn" type="button" disabled>Import</button>
+          </div>
+        </div>
+
+        <!-- ===================== Sheets ===================== -->
+        <div class="sheet-backdrop" id="assetSheet" hidden>
+          <div class="sheet">
+            <div class="sheet-head">
+              <span class="sheet-title">Select asset</span>
+              <button class="sheet-close" type="button" data-close-sheet aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+            <ul class="sheet-list" id="assetList"></ul>
+          </div>
+        </div>
+
+        <div class="sheet-backdrop" id="networkSheet" hidden>
+          <div class="sheet">
+            <div class="sheet-head">
+              <span class="sheet-title">Select network</span>
+              <button class="sheet-close" type="button" data-close-sheet aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+            <ul class="sheet-list" id="networkList"></ul>
+          </div>
+        </div>
+
+        <div class="sheet-backdrop" id="feeSheet" hidden>
+          <div class="sheet">
+            <div class="sheet-head">
+              <span class="sheet-title">Network fee</span>
+              <button class="sheet-close" type="button" data-close-sheet aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+            <ul class="sheet-list" id="feeList"></ul>
+          </div>
+        </div>
+
+        <div class="sheet-backdrop" id="adjustSheet" hidden>
+          <div class="sheet">
+            <div class="sheet-head">
+              <span class="sheet-title">Adjust amount</span>
+              <button class="sheet-close" type="button" data-close-sheet aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+            <div class="adjust-body">
+              <div class="adjust-coin">
+                <img id="adjustLogo" src="assets/icons/bitcoin.png" alt="" width="40" height="40" />
+                <span class="pick-text">
+                  <span class="pick-title" id="adjustName">Bitcoin</span>
+                  <span class="pick-sub" id="adjustSym">BTC</span>
+                </span>
+              </div>
+              <div class="field-card amount-card">
+                <span class="field-label">Amount</span>
+                <div class="amount-row">
+                  <input class="amount-input" id="adjustInput" type="text" inputmode="decimal" autocomplete="off" />
+                  <span class="amount-symbol" id="adjustSymbol">BTC</span>
+                </div>
+                <div class="amount-meta">
+                  <span id="adjustUsd">$0.00</span>
+                  <span class="amount-avail">Current: <b id="adjustCurrent">0.0521 BTC</b></span>
+                </div>
+              </div>
+              <button class="primary-btn" id="adjustApply" type="button">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sheet-backdrop" id="swapSheet" hidden>
+          <div class="sheet">
+            <div class="sheet-head">
+              <span class="sheet-title">Select token</span>
+              <button class="sheet-close" type="button" data-close-sheet aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+            <ul class="sheet-list" id="swapList"></ul>
+          </div>
+        </div>
+
+        <div class="sheet-backdrop" id="walletSheet" hidden>
+          <div class="sheet">
+            <div class="sheet-head">
+              <span class="sheet-title">Wallets</span>
+              <button class="sheet-close" type="button" data-close-sheet aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+            <ul class="sheet-list" id="walletList"></ul>
+            <button class="sheet-add" id="sheetImportBtn" type="button">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14"/><path d="M5 12h14"/>
+              </svg>
+              Import recovery phrase
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================== Bottom navigation ===================== -->
+      <nav class="tabbar" aria-label="Main navigation">
+        <button class="tab is-active" type="button" data-tab="home" aria-label="Home" aria-current="page">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+          </svg>
+          <span class="tab-label">Home</span>
+        </button>
+
+        <button class="tab" type="button" data-tab="markets" aria-label="Markets">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 3v16a2 2 0 0 0 2 2h16"/>
+            <path d="M7 14l4-4 4 4 5-6"/>
+          </svg>
+          <span class="tab-label">Markets</span>
+        </button>
+
+        <button class="tab tab-fab" type="button" data-tab="search" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+        </button>
+
+        <button class="tab" type="button" data-tab="wallet" aria-label="Wallet">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/>
+            <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>
+          </svg>
+          <span class="tab-label">Wallet</span>
+        </button>
+
+        <button class="tab" type="button" data-tab="settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span class="tab-label">Settings</span>
+        </button>
+      </nav>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+  <script src="native.js"></script>
+  <script>
+    // Register service worker for PWA (web only, ignored on file://)
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+    // Add web-header padding on http(s) desktop
+    if (location.protocol.startsWith('http')) {
+      document.getElementById('stage')?.classList.add('has-web-header');
+    }
+    // --- MOBILE FULLSCREEN: يغطي الشاشة بالكامل ---
+    (function() {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 767;
+      if (!isMobile) return;
+      // إخفاء شريط العنوان عند التحميل (iOS/Android)
+      const hideBar = () => {
+        window.scrollTo(0, 1);
+        // إصلاح وحدات vh على المتصفحات القديمة
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', vh + 'px');
+      };
+      window.addEventListener('load', () => setTimeout(hideBar, 100));
+      window.addEventListener('resize', hideBar);
+      window.addEventListener('orientationchange', () => setTimeout(hideBar, 200));
+      // منع الارتداد العلوي
+      let startY = 0;
+      document.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, {passive: true});
+      document.addEventListener('touchmove', e => {
+        const el = document.querySelector('.app');
+        if (!el) return;
+        const atTop = el.scrollTop <= 0;
+        const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
+        const goingUp = e.touches[0].clientY > startY;
+        const goingDown = e.touches[0].clientY < startY;
+        if ((atTop && goingUp) || (atBottom && goingDown)) e.preventDefault();
+      }, {passive: false});
+    })();
+  </script>
+</body>
+</html>

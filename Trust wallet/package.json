@@ -1,0 +1,20 @@
+{
+  "name": "nova-wallet-web",
+  "version": "1.0.0",
+  "description": "Nova Wallet - Trust Wallet web app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 3000 --host",
+    "build": "vite build",
+    "preview": "vite preview --port 3000",
+    "serve": "npx serve . -l 3000",
+    "start": "npx serve . -l 3000"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
